@@ -290,6 +290,37 @@ body {
   text-align: center;
 }
 
+.ios-shortcut-box {
+  margin-top: 10px;
+  padding: 12px 14px;
+  background: #f0fdf4;
+  border: 1.5px solid #bbf7d0;
+  border-radius: 10px;
+}
+
+.ios-shortcut-title {
+  font-size: 12px;
+  font-weight: 700;
+  color: #15803d;
+  margin-bottom: 8px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.ios-steps {
+  padding-left: 18px;
+  font-size: 13px;
+  color: #166534;
+  line-height: 1.7;
+}
+
+.ios-install-link {
+  color: #f97316;
+  font-weight: 600;
+  text-decoration: none;
+}
+.ios-install-link:hover { text-decoration: underline; }
+
 @media (max-width: 500px) {
   .nfc-code-box { font-size: 16px; }
 }
