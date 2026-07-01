@@ -1,58 +1,34 @@
 'use client';
 
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect } from 'react';
 
-const SETUP_STEPS = [
-  { icon: '📱', text: <>Abre la app <strong>Atajos</strong> en tu iPhone</> },
-  { icon: '＋', text: <>Pulsa el botón <strong>+</strong> arriba a la derecha</> },
-  { icon: '🔍', text: <>Toca <strong>Añadir acción</strong> y busca <em>"Escribir etiqueta NFC"</em></> },
-  { icon: '✏️', text: <>En el campo de texto, toca y elige la variable <strong>"Entrada del atajo"</strong></> },
-  { icon: '🏷️', text: <>Pulsa <strong>"Atajo sin título"</strong> arriba y escribe exactamente: <code>FABA NFC</code></> },
-  { icon: '✅', text: <>Toca <strong>Listo</strong> — ¡ya está! Solo hay que hacerlo una vez</> },
-];
-
-function IOSShortcutSection({ code, onCopy, onWrite }) {
-  const [showGuide, setShowGuide] = useState(false);
-
+function IOSSection({ code, onCopy }) {
   return (
     <div className="ios-section">
-      <div className="action-row">
-        <button className="btn btn-primary" onClick={onWrite}>
-          📲 Escribir con Shortcuts
-        </button>
-        <button className="btn btn-secondary" onClick={onCopy}>
-          📋 Copiar
-        </button>
-      </div>
-
-      <button
-        className="ios-guide-toggle"
-        onClick={() => setShowGuide(v => !v)}
-        aria-expanded={showGuide}
-      >
-        {showGuide ? '▲' : '▼'} {showGuide ? 'Ocultar guía de configuración' : '¿Primera vez? Configura el Shortcut (30 seg)'}
+      <button className="btn btn-primary btn-copy-big" onClick={onCopy}>
+        📋 Copiar código
       </button>
-
-      {showGuide && (
-        <div className="ios-guide">
-          <p className="ios-guide-intro">
-            Safari no puede tocar el NFC directamente (limitación de Apple).
-            La app <strong>Atajos</strong> sí puede. Crea este atajo una sola vez:
-          </p>
-          <ol className="ios-steps-list">
-            {SETUP_STEPS.map((s, i) => (
-              <li key={i} className="ios-step">
-                <span className="ios-step-icon">{s.icon}</span>
-                <span>{s.text}</span>
-              </li>
-            ))}
-          </ol>
-          <div className="ios-guide-after">
-            Después vuelve aquí y pulsa <strong>Escribir con Shortcuts</strong>.
-            La app Atajos se abre sola, acercas la etiqueta NTAG213 y graba el código.
+      <div className="ios-nfc-tools-guide">
+        <div className="ios-nfc-tools-title">Cómo grabarlo en el iPhone</div>
+        <div className="ios-nfc-tools-steps">
+          <div className="ios-nfc-step">
+            <span className="ios-nfc-num">1</span>
+            <span>Pulsa <strong>Copiar código</strong> arriba</span>
+          </div>
+          <div className="ios-nfc-step">
+            <span className="ios-nfc-num">2</span>
+            <span>Abre <strong>NFC Tools</strong> → Escribir → Añadir registro → Texto → pega el código → Escribe → acerca la etiqueta</span>
           </div>
         </div>
-      )}
+        <a
+          href="https://apps.apple.com/es/app/nfc-tools/id1252962749"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="ios-nfc-tools-link"
+        >
+          ↗ Descargar NFC Tools (gratis)
+        </a>
+      </div>
     </div>
   );
 }
@@ -103,16 +79,6 @@ export default function StoryCard({ story, expanded, onToggle }) {
       };
       setStatusMsg(msgs[err.name] ?? `❌ ${err.message}`);
     }
-  }
-
-  function openShortcut() {
-    // Pass the NFC code to the pre-installed shortcut
-    const url = `shortcuts://run-shortcut?name=${encodeURIComponent(SHORTCUT_NAME)}&input=${encodeURIComponent(code)}`;
-    window.location.href = url;
-    setStatus('writing');
-    setStatusMsg('📲 Abriendo Shortcuts… acerca la etiqueta cuando te lo pida.');
-    // Reset after a moment (we can't detect Shortcuts result from web)
-    setTimeout(() => setStatus(null), 6000);
   }
 
   async function copyCode() {
@@ -194,9 +160,9 @@ export default function StoryCard({ story, expanded, onToggle }) {
                   </div>
                 )}
 
-                {/* iOS: Shortcuts flow */}
+                {/* iOS: NFC Tools guide */}
                 {isIOS && !hasWebNFC && (
-                  <IOSShortcutSection code={code} onCopy={copyCode} onWrite={openShortcut} />
+                  <IOSSection code={code} onCopy={copyCode} />
                 )}
 
                 {/* Desktop fallback */}
