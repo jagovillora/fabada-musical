@@ -412,6 +412,144 @@ body {
 }
 .ios-nfc-tools-link:hover { text-decoration: underline; }
 
+.card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 12px;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.btn-detail {
+  background: none;
+  border: 1.5px solid var(--orange);
+  color: var(--orange);
+  border-radius: 8px;
+  padding: 5px 12px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+.btn-detail:hover { background: var(--orange); color: white; }
+
+/* ── Detail page ────────────────────────────────────────────── */
+
+.detail-page {
+  max-width: 680px;
+  margin: 0 auto;
+  padding: 16px;
+  padding-bottom: 40px;
+}
+
+.detail-back {
+  background: none;
+  border: none;
+  color: var(--orange);
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 0;
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+.detail-back:hover { opacity: 0.75; }
+
+.detail-hero {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+  margin-bottom: 20px;
+}
+
+.detail-img {
+  width: 110px;
+  height: 110px;
+  object-fit: cover;
+  border-radius: 12px;
+  flex-shrink: 0;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+}
+
+.detail-hero-info { flex: 1; min-width: 0; }
+
+.detail-title {
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 1.25;
+  color: var(--text);
+}
+
+.detail-section {
+  margin-top: 20px;
+  padding-top: 16px;
+  border-top: 1px solid var(--border);
+}
+
+.detail-section-title {
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #9ca3af;
+  margin-bottom: 10px;
+}
+
+.detail-description {
+  font-size: 14px;
+  line-height: 1.65;
+  color: #374151;
+}
+
+.detail-tracks {
+  padding-left: 20px;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.detail-track {
+  font-size: 14px;
+  color: var(--text);
+  line-height: 1.4;
+}
+
+.detail-code { font-size: 20px; }
+
+.detail-no-nfc {
+  padding: 12px;
+  background: var(--gray-light);
+  border-radius: 8px;
+  font-size: 13px;
+  color: var(--gray);
+  text-align: center;
+}
+
+.detail-nfc { margin-top: 0; }
+
+.detail-meta-footer {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  font-size: 12px;
+  color: #9ca3af;
+  align-items: center;
+}
+
+.detail-ext-link {
+  color: var(--orange);
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 13px;
+}
+.detail-ext-link:hover { text-decoration: underline; }
+
 @media (max-width: 500px) {
   .nfc-code-box { font-size: 16px; }
+  .detail-title { font-size: 17px; }
+  .detail-img { width: 90px; height: 90px; }
 }

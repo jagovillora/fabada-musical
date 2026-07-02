@@ -45,7 +45,7 @@ function formatNfcCode(code) {
   };
 }
 
-export default function StoryCard({ story, expanded, onToggle }) {
+export default function StoryCard({ story, expanded, onToggle, onDetail }) {
   const [status, setStatus] = useState(null);
   const [statusMsg, setStatusMsg] = useState('');
   const [platform, setPlatform] = useState('unknown');
@@ -185,11 +185,18 @@ export default function StoryCard({ story, expanded, onToggle }) {
             )}
           </div>
 
-          {story.sku && (
-            <div style={{ marginTop: 10, fontSize: 12, color: '#9ca3af' }}>
-              SKU: {story.sku}{story.id ? ` · ID: ${story.id}` : ''}{story.coleccion ? ` · ${story.coleccion}` : ''}
-            </div>
-          )}
+          <div className="card-footer">
+            {story.sku && (
+              <span style={{ fontSize: 12, color: '#9ca3af' }}>
+                SKU: {story.sku}{story.id ? ` · ID: ${story.id}` : ''}{story.coleccion ? ` · ${story.coleccion}` : ''}
+              </span>
+            )}
+            {story.path && (
+              <button className="btn-detail" onClick={e => { e.stopPropagation(); onDetail?.(); }}>
+                Ver detalle ↗
+              </button>
+            )}
+          </div>
         </div>
       )}
     </div>
