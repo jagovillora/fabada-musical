@@ -81,8 +81,8 @@ export default function DetailClient({ story }) {
       <button className="detail-back" onClick={() => router.back()}>← Volver</button>
 
       <div className="detail-hero">
-        {story.image && (
-          <img src={story.image} alt={story.titulo} className="detail-img" />
+        {(story.image_hd || story.image) && (
+          <img src={story.image_hd || story.image} alt={story.titulo} className="detail-img" />
         )}
         <div className="detail-hero-info">
           {story.path && <div className="path-badge" style={{ marginBottom: 8 }}>{story.path}</div>}
