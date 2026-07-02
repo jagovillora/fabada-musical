@@ -106,17 +106,6 @@ export default function DetailClient({ story }) {
         </div>
       )}
 
-      {story.tracks?.length > 0 && (
-        <div className="detail-section">
-          <div className="detail-section-title">Pistas ({story.tracks.length})</div>
-          <ol className="detail-tracks">
-            {story.tracks.map((t, i) => (
-              <li key={i} className="detail-track">{t}</li>
-            ))}
-          </ol>
-        </div>
-      )}
-
       <div className="detail-section">
         <NFCWriter story={story} />
       </div>
