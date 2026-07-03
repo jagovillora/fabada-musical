@@ -1,4 +1,5 @@
 {
+  "alias": ["fabada-musical.vercel.app"],
   "headers": [
     {
       "source": "/",
